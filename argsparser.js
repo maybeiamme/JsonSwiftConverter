@@ -9,11 +9,20 @@ function string(val) {
 	return val;
 }
 
-exports.parseToRequestPromiseOptionFormat = function parse(args) {
+function initializeCommand() {
 	commander
-	.option('-H, --header <v>', 'HttpHeader', collect, [])
-	.option('-X, --request <v>', 'Request command', string)
-	.option('-d, --data <v>', 'POST BODY', string)
+	.usage('[curl options] [generator options]')
+	.option('-H, --header <v>', 'Same usage as curl option', collect, [])
+	.option('-X, --request <v>', 'Same usage as curl option', string)
+	.option('-d, --data <v>', 'Same usage as curl option', string)
+	.option('-P, --path <v>', 'Destination path for swift file', string)
+	.option('-N, --name <v>', 'Top most struct name for domain model entity', string)
+	.option('-A, --accesscontrol <v>', 'Prefered accesscontrol for each variables and structs', string);
+}
+
+exports.parseToRequestPromiseOptionFormat = function parse(args) {
+	initializeCommand();
+	commander
 	.parse(args);
 	let returnVal = {
 		method: commander.request,
@@ -31,9 +40,6 @@ exports.parseToRequestPromiseOptionFormat = function parse(args) {
 
 exports.parseOptions = function options(args) {
 	commander
-	.option('-P, --path <v>', 'filepath', string)
-	.option('-N, --name <v>', 'classname', string)
-	.option('-A, --accesscontrol <v>', 'accesscontrol', string)
 	.parse(args);
 
 	return {
