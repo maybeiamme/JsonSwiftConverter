@@ -1,6 +1,6 @@
 {
-  "name": "generator",
-  "version": "1.0.0",
+  "name": "jsonswiftconverter",
+  "version": "1.0.1",
   "description": "Swift domain model entity generator from url",
   "main": "generator.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "commander": "^2.16.0"
   },
   "bin": {
-    "generator": "/bin/generator"
+    "converter": "./bin/converter"
   },
   "author": {
     "name": "Jin",
